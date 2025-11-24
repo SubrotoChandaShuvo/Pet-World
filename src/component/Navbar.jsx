@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../assets/Logo.png";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   return (
@@ -29,35 +29,67 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a>Home</a>
+              <NavLink to="/"
+              className={({ isActive }) =>
+                isActive ? "text-blue-500 font-bold" : "text-gray-700"
+              }>Home</NavLink>
             </li>
             <li>
-              <a>Services</a>
+              <NavLink to="/services"
+              className={({ isActive }) =>
+                isActive ? "text-blue-500 font-bold" : "text-gray-700"
+              }
+              >Services</NavLink>
             </li>
             <li>
-              <a>My Profile</a>
+              <NavLink to="/l"
+              className={({ isActive }) =>
+                isActive ? "text-blue-500 font-bold" : "text-gray-700"
+              }
+              >Services</NavLink>
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost">
-          <img src={Logo} alt="" className="btn btn-ghost text-xl " />
+        <Link to="/" className="">
+          <img src={Logo} alt="" className="btn btn-ghost rounded-full" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Home</a>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-blue-500 font-bold" : "text-gray-700"
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <a>Services</a>
+            <NavLink
+              to="/services"
+              className={({ isActive }) =>
+                isActive ? "text-blue-500 font-bold" : "text-gray-700"
+              }
+            >
+              Services
+            </NavLink>
           </li>
           <li>
-            <a>My Profile</a>
+            <NavLink
+              to="/l"
+              className={({ isActive }) =>
+                isActive ? "text-blue-500 font-bold" : "text-gray-700"
+              }
+            >
+              My Profile
+            </NavLink>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <a className="btn">Login</a>
       </div>
     </div>
   );

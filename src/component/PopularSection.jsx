@@ -10,7 +10,7 @@ const PopularSection = () => {
       .catch((err) => console.log(err));
   }, []);
 
-//   console.log(services);
+  //   console.log(services);
 
   return (
     <div className="mt-8 px-8 md:px-8 lg:px-[120px]">
@@ -21,7 +21,7 @@ const PopularSection = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16">
-        {services.map((service) => (
+        {services.slice(0, 6).map((service) => (
           <div key={service.id} className="card bg-base-100 w-90 shadow-sm">
             <figure>
               <img
