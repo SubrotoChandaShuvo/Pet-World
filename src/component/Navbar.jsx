@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "../assets/Logo.png";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Provider/AuthProvider";
+import auth from "../firebase/firebase.config";
+import { signOut } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const {user}= useContext(AuthContext);
+
+  const handleSignOut=()=>{
+    signOut(auth)
+    toast.success("Logout Successful! 🎉");
+  }
+
   return (
     <div className="navbar bg-base-100 shadow-sm ">
       <div className="navbar-start">
@@ -88,9 +99,19 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end pr-3">
+      {
+        user &&
+        <div className="navbar-end pr-3">
+        <Link onClick={handleSignOut} className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg">Logout</Link>
+      </div>
+      }
+      {
+        !user &&
+        <div className="navbar-end pr-3">
         <Link to='/login' className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg">Login</Link>
       </div>
+      }
+      
     </div>
   );
 };
