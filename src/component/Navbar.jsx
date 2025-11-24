@@ -88,8 +88,8 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <Link to='/login' className="btn btn-primary text-lg">Login</Link>
+      <div className="navbar-end pr-3">
+        <Link to='/login' className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg">Login</Link>
       </div>
     </div>
   );
