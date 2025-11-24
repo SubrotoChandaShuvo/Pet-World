@@ -64,7 +64,8 @@ const OurVets = () => {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
         {vets.map((vet) => (
-          <div key={vet.id} className="card bg-base-200 shadow-lg">
+          <div key={vet.id} className="card bg-base-200 shadow-lg hover:shadow-2xl
+          transform transition-transform duration-300 hover:scale-105">
             <figure>
               <img
                 src={vet.image}

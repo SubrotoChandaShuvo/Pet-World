@@ -66,7 +66,7 @@ const winterTips = [
 const WinterCareTips = () => {
   return (
     <section className="py-12">
-      <h2 className="text-center text-3xl font-bold text-blue-900 mb-10">
+      <h2 className="text-center text-3xl font-bold text-primary mb-10">
         Winter Care Tips
       </h2>
 
@@ -74,7 +74,7 @@ const WinterCareTips = () => {
         {winterTips.map((tip) => (
           <div
             key={tip.id}
-            className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition border border-gray-100"
+            className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition border border-gray-100 "
           >
             <div className="text-4xl mb-3 text-center">{tip.icon}</div>
 
