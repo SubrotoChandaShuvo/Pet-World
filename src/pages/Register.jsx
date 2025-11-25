@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import auth from "../firebase/firebase.config";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const {
@@ -15,6 +16,8 @@ const Register = () => {
     handleGoogleSignin,
   } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const [showPass, setShowPass] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,12 +67,12 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        toast.success("Registration Successful! 🎉");
+        toast.success("Signup Successful! 🎉");
         navigate("/");
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Registration failed❗ Please try again.");
+        toast.error("Signup Process failed❗ Please try again.");
       });
   };
 
@@ -103,12 +106,23 @@ const Register = () => {
                 placeholder="Enter Your PhotoURL"
               />
               <label className="text-[15px]">Password</label>
-              <input
-                name="password"
-                type="password"
-                className="input w-full mb-4"
-                placeholder="Password"
-              />
+                            <div className="relative">
+                              <input
+                                name="password"
+                                type={showPass ? "text" : "password"}
+                                className="input w-full pr-10"
+                                placeholder="Password"
+                                aria-label="password"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => setShowPass(!showPass)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-gray-500"
+                                aria-label={showPass ? "Hide password" : "Show password"}
+                              >
+                                {showPass ? <FaEyeSlash /> : <FaEye />}
+                              </button>
+                            </div>
               <div className="">
                 <span className="pr-4">Already have an account? </span>
                 <Link className="link link-hover text-blue-500" to={"/login"}>
@@ -119,7 +133,7 @@ const Register = () => {
                 className="btn btn-primary transform transition-transform duration-300 hover:scale-102"
                 disabled={loading}
               >
-                Register
+                Signup
               </button>
               <p className="text-center">Or Register with Google</p>
               <button
