@@ -13,8 +13,6 @@ const Services = () => {
     <div className="my-8 ">
       <title>Services</title>
       <div className="mt-12 mb-4">
-        {/* <h3 className="font-bold text-4xl text-center pb-8 text-blue-600"> */}
-        <marquee>
           <h3
             className="text-2xl md:text-4xl lg:text-4xl font-bold text-center pb-8
                bg-linear-to-r from-blue-500 via-purple-500 to-pink-500
@@ -22,7 +20,6 @@ const Services = () => {
           >
             Our Popular Winter Care Services
           </h3>
-        </marquee>
       </div>
       <div className="px-8 md:px-8 lg:px-[120px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 ">

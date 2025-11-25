@@ -1,16 +1,20 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import auth from "../firebase/firebase.config";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
-
-
-
-
+import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
-  const { registerWithEmailPassword, setUser, loading, setLoading} = useContext(AuthContext);
+  const {
+    registerWithEmailPassword,
+    setUser,
+    loading,
+    setLoading,
+    handleGoogleSignin,
+  } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,10 +29,11 @@ const Register = () => {
           photoURL: photoUrl,
         })
           .then(() => {
-            setUser(userCredential.user)
+            setUser(userCredential.user);
             toast.success("Registration Successful! 🎉");
             // console.log(userCredential.user);
             setLoading(false);
+            navigate("/");
           })
           .catch((error) => {
             console.log(error);
@@ -41,8 +46,19 @@ const Register = () => {
       });
   };
 
-// console.log(user);
-
+  const googleSignup = () => {
+    handleGoogleSignin()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        toast.success("Registration Successful! 🎉");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  // console.log(user);
 
   return (
     <div>
@@ -88,8 +104,18 @@ const Register = () => {
                   Login
                 </Link>
               </div>
-              <button className="btn btn-primary transform transition-transform duration-300 hover:scale-102" disabled={loading}>
+              <button
+                className="btn btn-primary transform transition-transform duration-300 hover:scale-102"
+                disabled={loading}
+              >
                 Register
+              </button>
+              <p className="text-center">Or Register with Google</p>
+              <button
+                onClick={googleSignup}
+                className="btn transform transition-transform duration-300 hover:scale-102"
+              >
+                <FcGoogle />
               </button>
             </form>
           </div>

@@ -1,13 +1,15 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import auth from "../firebase/firebase.config";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  const { setUser, handleGoogleSignin } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const {setUser, user}=useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,16 +20,27 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         toast.success("Login Successful! 🎉");
-        setUser(user)
+        setUser(user);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
-        
       });
   };
 
-  console.log(user);
-  
+  const googleSignin = () => {
+    handleGoogleSignin()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        toast.success("Login Successful! 🎉");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <title>Login</title>
@@ -60,6 +73,13 @@ const Login = () => {
               </div>
               <button className="btn btn-primary transform transition-transform duration-300 hover:scale-102">
                 Login
+              </button>
+              <p className="text-center">Or Login with Google</p>
+              <button
+                onClick={googleSignin}
+                className="btn transform transition-transform duration-300 hover:scale-102"
+              >
+                <FcGoogle />
               </button>
             </form>
           </div>
