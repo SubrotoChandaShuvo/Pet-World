@@ -5,6 +5,7 @@ import auth from "../firebase/firebase.config";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { setUser, handleGoogleSignin, loading, setLoading } =
@@ -13,6 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
+  const [showPass, setShowPass] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +28,7 @@ const Login = () => {
         toast.success("Login Successful! 🎉");
         setUser(user);
         setLoading(false);
-        navigate(location.state? location.state: '/');
+        navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
         console.log(error);
@@ -86,13 +88,26 @@ const Login = () => {
                 className="input w-full"
                 placeholder="Email"
               />
+
               <label className="text-[15px]">Password</label>
-              <input
-                name="password"
-                type="password"
-                className="input w-full mb-4"
-                placeholder="Password"
-              />
+              <div className="relative">
+                <input
+                  name="password"
+                  type={showPass ? "text" : "password"}
+                  className="input w-full pr-10"
+                  placeholder="Password"
+                  aria-label="password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPass(!showPass)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-gray-500"
+                  aria-label={showPass ? "Hide password" : "Show password"}
+                >
+                  {showPass ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+
               <div>
                 <button onClick={handleForget} className="link link-hover">
                   Forgot password?

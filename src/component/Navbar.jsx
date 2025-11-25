@@ -59,6 +59,16 @@ const Navbar = () => {
               }
               >My Profile</NavLink>
             </li>
+            <li>
+            <NavLink
+              to="/stories"
+              className={({ isActive }) =>
+                isActive ? "text-blue-500 font-bold" : "text-gray-700"
+              }
+            >
+              Stories
+            </NavLink>
+          </li>
           </ul>
         </div>
         <Link to="/" className="">
@@ -89,12 +99,22 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="profile"
+              to="/profile"
               className={({ isActive }) =>
                 isActive ? "text-blue-500 font-bold" : "text-gray-700"
               }
             >
               My Profile
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/stories"
+              className={({ isActive }) =>
+                isActive ? "text-blue-500 font-bold" : "text-gray-700"
+              }
+            >
+              Stories
             </NavLink>
           </li>
         </ul>

@@ -16,7 +16,7 @@ const Services = () => {
       <title>Services</title>
       <div className="mt-12 mb-4">
         <h3
-          className="text-2xl md:text-4xl lg:text-4xl font-bold text-center pb-8
+          className="animate__animated animate__bounce text-2xl md:text-4xl lg:text-4xl font-bold text-center pb-8
                bg-linear-to-r from-blue-500 via-purple-500 to-pink-500
                bg-clip-text text-transparent"
         >
@@ -26,7 +26,7 @@ const Services = () => {
       <div className="px-8 md:px-8 lg:px-[120px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 ">
           {services.map((service) => (
-            <motion.button initial={{ scale: 0.4 }}
+            <motion.button initial={{ scale: 0.6 }}
               animate={{
                 scale: 1,
                 transition: { duration: 0.8},

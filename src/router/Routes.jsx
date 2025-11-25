@@ -9,6 +9,7 @@ import Profile from "../pages/Profile";
 import PrivateRoute from "./PrivateRoute";
 import ServiceDetails from "../pages/ServiceDetails";
 import ForgetPass from "../pages/ForgetPass";
+import SuccessStories from "../pages/SuccessStories";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/forget/:email",
         element: <ForgetPass/>
+      },
+      {
+        path: "/stories",
+        element: <SuccessStories/>
       }
     ],
   },
