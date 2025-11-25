@@ -22,6 +22,8 @@ const Register = () => {
     const pass = e.target.password.value;
     const name = e.target.name.value;
     const photoUrl = e.target.photoUrl.value;
+
+    
     registerWithEmailPassword(email, pass)
       .then((userCredential) => {
         updateProfile(auth.currentUser, {
@@ -64,7 +66,7 @@ const Register = () => {
     <div>
       <title>SignUp</title>
       <div className="hero min-h-lvw lg:min-h-screen p-4 md:p-0">
-        <div className="card bg-base-100 w-full max-w-sm md:max-w-md lg:max-w-lg shrink-0 shadow-2xl transform transition-transform duration-300 hover:scale-105">
+        <div className="card bg-base-100 w-full max-w-sm md:max-w-md lg:max-w-lg shrink-0 shadow-2xl transform transition-transform duration-300 hover:scale-105 shadow-gray-600">
           <div className="card-body">
             <form onSubmit={handleSubmit} className="fieldset">
               <label className="text-[15px]">Email</label>
@@ -113,9 +115,9 @@ const Register = () => {
               <p className="text-center">Or Register with Google</p>
               <button
                 onClick={googleSignup}
-                className="btn transform transition-transform duration-300 hover:scale-102"
+                className="btn bg-gray-300 transform transition-transform duration-300 hover:scale-102"
               >
-                <FcGoogle />
+                <FcGoogle className="text-2xl"/>
               </button>
             </form>
           </div>

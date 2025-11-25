@@ -45,9 +45,9 @@ const Login = () => {
     <div>
       <title>Login</title>
       <div className="hero min-h-lvw lg:min-h-screen p-4 md:p-0">
-        <div className="card bg-base-100 w-full max-w-sm md:max-w-md lg:max-w-lg shrink-0 shadow-2xl transform transition-transform duration-300 hover:scale-105">
+        <div className="card bg-base-100 w-full max-w-sm md:max-w-md lg:max-w-lg shrink-0 shadow-2xl transform transition-transform duration-300 hover:scale-105 shadow-gray-600">
           <div className="card-body">
-            <form onSubmit={handleSubmit} className="fieldset">
+            <form onSubmit={handleSubmit} className="fieldset ">
               <label className="text-[15px]">Email</label>
               <input
                 name="email"
@@ -77,9 +77,9 @@ const Login = () => {
               <p className="text-center">Or Login with Google</p>
               <button
                 onClick={googleSignin}
-                className="btn transform transition-transform duration-300 hover:scale-102"
+                className="btn transform transition-transform duration-300 hover:scale-102 bg-gray-300"
               >
-                <FcGoogle />
+                <FcGoogle className="text-2xl"/>
               </button>
             </form>
           </div>

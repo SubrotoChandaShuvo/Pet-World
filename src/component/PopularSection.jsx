@@ -22,8 +22,11 @@ const PopularSection = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16">
         {services.slice(0, 6).map((service) => (
-          <div key={service.id} className="card bg-base-100 w-90 shadow-sm
-          transform transition-transform duration-300 hover:scale-105">
+          <div
+            key={service.id}
+            className="card bg-base-100 w-90 shadow-sm
+          transform transition-transform duration-300 hover:scale-105"
+          >
             <figure>
               <img
                 className="w-full h-[300px] object-cover"
@@ -33,7 +36,7 @@ const PopularSection = () => {
             </figure>
             <div className="card-body items-center">
               <h2 className="card-title ">{service?.serviceName}</h2>
-              <div className="flex justify-between items-center w-full px-20 pb-1 text-[16px]">
+              <div className="flex justify-between items-center w-full px-12 pb-3">
                 <span className="font-semibold">${service?.price}</span>
                 <span className="">⭐ {service?.rating}</span>
               </div>
