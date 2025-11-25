@@ -76,24 +76,6 @@ npm run build
 firebase deploy
 ```
 
-## Folder Structure
-
-```
-pet-world/
-├─ public/
-│  ├─ index.html
-│  ├─ _redirects      # For React Router SPA routing
-│  └─ ...
-├─ src/
-│  ├─ components/     # Reusable components like Navbar, Banner, Cards
-│  ├─ pages/          # Login, Signup, Services, Home
-│  ├─ Provider/       # Auth context provider
-│  ├─ firebase/       # Firebase config
-│  └─ App.jsx
-├─ package.json
-└─ README.md
-```
-
 ## Usage
 
 1. Open the [live link](https://stellular-tapioca-d55da7.netlify.app/services) to explore Pet World services.
