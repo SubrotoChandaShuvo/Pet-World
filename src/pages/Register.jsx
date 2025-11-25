@@ -23,7 +23,18 @@ const Register = () => {
     const name = e.target.name.value;
     const photoUrl = e.target.photoUrl.value;
 
-    
+    const uppercase = /[A-Z]/;
+    const lowercase = /[a-z]/;
+    if (pass.length < 6) {
+      return toast.error("Less then 6 characters");
+    }
+    if (!uppercase.test(pass)) {
+      return toast.error("Need a Uppercase Latter");
+    }
+    if (!lowercase.test(pass)) {
+      return toast.error("Need a lowercase Latter");
+    }
+
     registerWithEmailPassword(email, pass)
       .then((userCredential) => {
         updateProfile(auth.currentUser, {
@@ -58,9 +69,9 @@ const Register = () => {
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Registration failed❗ Please try again.");
       });
   };
-  // console.log(user);
 
   return (
     <div>
@@ -69,6 +80,7 @@ const Register = () => {
         <div className="card bg-base-100 w-full max-w-sm md:max-w-md lg:max-w-lg shrink-0 shadow-2xl transform transition-transform duration-300 hover:scale-105 shadow-gray-600">
           <div className="card-body">
             <form onSubmit={handleSubmit} className="fieldset">
+              <h1 className="text-3xl text-center">Signup</h1>
               <label className="text-[15px]">Email</label>
               <input
                 name="email"
@@ -97,9 +109,6 @@ const Register = () => {
                 className="input w-full mb-4"
                 placeholder="Password"
               />
-              <div>
-                <a className="link link-hover">Forgot password?</a>
-              </div>
               <div className="">
                 <span className="pr-4">Already have an account? </span>
                 <Link className="link link-hover text-blue-500" to={"/login"}>
@@ -117,7 +126,7 @@ const Register = () => {
                 onClick={googleSignup}
                 className="btn bg-gray-300 transform transition-transform duration-300 hover:scale-102"
               >
-                <FcGoogle className="text-2xl"/>
+                <FcGoogle className="text-2xl" />
               </button>
             </form>
           </div>

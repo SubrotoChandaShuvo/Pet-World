@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 const PopularSection = () => {
   const [services, setServices] = useState([]);
@@ -41,7 +42,7 @@ const PopularSection = () => {
                 <span className="">⭐ {service?.rating}</span>
               </div>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary">View details</button>
+                <Link to={`/details/${service?.serviceId}`}><button className="btn btn-primary">View details</button></Link>
               </div>
             </div>
           </div>

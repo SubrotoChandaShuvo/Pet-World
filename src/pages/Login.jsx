@@ -1,18 +1,22 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import auth from "../firebase/firebase.config";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-  const { setUser, handleGoogleSignin } = useContext(AuthContext);
+  const { setUser, handleGoogleSignin, loading, setLoading } =
+    useContext(AuthContext);
+  const location = useLocation();
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     const email = e.target.email.value;
     const pass = e.target.password.value;
 
@@ -21,11 +25,21 @@ const Login = () => {
         const user = userCredential.user;
         toast.success("Login Successful! 🎉");
         setUser(user);
-        navigate("/");
+        setLoading(false);
+        navigate(location.state? location.state: '/');
       })
       .catch((error) => {
         console.log(error);
+        // toast.error("Login failed❗ Please try again.");
       });
+
+    if (loading) {
+      return (
+        <div className="flex justify-center pt-10">
+          <span className="loading loading-spinner text-neutral loading-lg scale-250"></span>
+        </div>
+      );
+    }
   };
 
   const googleSignin = () => {
@@ -33,12 +47,25 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+        setLoading(false);
         toast.success("Login Successful! 🎉");
-        navigate("/");
+        navigate(location.state);
       })
       .catch((error) => {
         console.log(error);
       });
+
+    if (loading) {
+      return (
+        <div className="flex justify-center pt-10">
+          <span className="loading loading-spinner text-neutral loading-lg scale-250"></span>
+        </div>
+      );
+    }
+  };
+
+  const handleForget = () => {
+    navigate(`/forget/${email}`);
   };
 
   return (
@@ -48,8 +75,12 @@ const Login = () => {
         <div className="card bg-base-100 w-full max-w-sm md:max-w-md lg:max-w-lg shrink-0 shadow-2xl transform transition-transform duration-300 hover:scale-105 shadow-gray-600">
           <div className="card-body">
             <form onSubmit={handleSubmit} className="fieldset ">
+              <h1 className="text-3xl text-center">Login</h1>
               <label className="text-[15px]">Email</label>
               <input
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 name="email"
                 type="email"
                 className="input w-full"
@@ -63,12 +94,14 @@ const Login = () => {
                 placeholder="Password"
               />
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <button onClick={handleForget} className="link link-hover">
+                  Forgot password?
+                </button>
               </div>
               <div className="">
                 <span className="pr-4">Don't have an account? </span>
                 <Link className="link link-hover text-blue-500" to={"/signup"}>
-                  Register
+                  Signup
                 </Link>
               </div>
               <button className="btn btn-primary transform transition-transform duration-300 hover:scale-102">
@@ -79,7 +112,7 @@ const Login = () => {
                 onClick={googleSignin}
                 className="btn transform transition-transform duration-300 hover:scale-102 bg-gray-300"
               >
-                <FcGoogle className="text-2xl"/>
+                <FcGoogle className="text-2xl" />
               </button>
             </form>
           </div>
